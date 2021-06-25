@@ -91,7 +91,7 @@ void Bike::setGears() {
     std::cout << "Gears: ";
     char ge;
     std::cin >> ge;
-    if(ge<0) {
+    if(ge<0 || !isdigit(ge)) {
         throw std::runtime_error("Incorrect number of gears!");
     }
     this->gears = ge;
