@@ -22,9 +22,29 @@ public:
     virtual void create();
     virtual void show();
     virtual void save();
-    Vehicle(std::string ty, std::string br, std::string mo, unsigned short int ra, unsigned short int po,
-            std::string co, unsigned short int nu);
-    Vehicle();
+    Vehicle(std::string &ty, std::string &br, std::string &mo, unsigned short int &ra, unsigned short int &po,
+            std::string &co, unsigned short int &nu);
+    Vehicle() = default;
+    ~Vehicle() = default;
+
+    static bool ifNumeric(std::string &str);
+
+    //getters
+    const std::string &getBrand() const;
+    const std::string &getModel() const;
+    unsigned short getRange() const;
+    unsigned short getPower() const;
+    const std::string &getColor() const;
+    unsigned short getNumberOfSeats() const;
+
+    //setters
+    void setBrand();
+    void setModel();
+    void setRange();
+    void setPower();
+    void setColor();
+    void setNumberOfSeats();
+
 };
 
 

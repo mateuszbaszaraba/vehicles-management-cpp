@@ -13,16 +13,29 @@ class Car : public Vehicle {
 private:
     std::string type = "car";
     long vin;
-    bool damaged;
+    bool damaged;  //boolAlpha()
     bool damagedBefore;
     std::string platesNumber;
 public:
-    void create();
-    void show();
-    void save();
-    Car(std::string ty, std::string br, std::string mo, unsigned short int ra, unsigned short int po, std::string co,
-        unsigned short int nu, long vi, bool da, bool db, std::string pl);
-    Car();
+    void create() override;
+    void show() override;
+    void save() override;
+    Car(std::string &ty, std::string &br, std::string &mo, unsigned short int &ra, unsigned short int &po, std::string &co,
+        unsigned short int &nu, long &vi, bool &da, bool &db, std::string &pl);
+    Car() = default;
+    ~Car() = default;
+
+    //getters
+    long getVin() const;
+    bool getDamaged() const;
+    bool getDamagedBefore() const;
+    const std::string &getPlatesNumber() const;
+
+    //setters
+    void setVin();
+    void setDamaged();
+    void setDamagedBefore();
+    void setPlastesNumber();
 };
 
 

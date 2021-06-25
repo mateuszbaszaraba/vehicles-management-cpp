@@ -15,16 +15,20 @@ void deleteV(std::vector<std::shared_ptr<Vehicle>> &vehicles);
 void saveV(std::vector<std::shared_ptr<Vehicle>> &vehicles);
 void readFromFile(std::vector<std::shared_ptr<Vehicle>> &vehicles);
 
+bool isWorking = true;
 
 int main() {
-
-    //vektor zawierający wprowadzone pojazdy elektryczne
+    //vektor zawierający wskaźniki do wprowadzonych pojazdów elektryczne
     std::vector<std::shared_ptr<Vehicle>> vehicles;
 
     //nieskończona pętla wyświetlająca intefejs głównego menu
     do {
-        mainMenu(vehicles);
-    } while (true);
+        try {
+            mainMenu(vehicles);
+        } catch(std::runtime_error &error) {
+                std::cout << error.what() << std::endl;
+        }
+    } while (isWorking);
 
 }
 
@@ -33,9 +37,9 @@ int main() {
 
 //funkcja odpowiedzialna za interfejs głównego menu, gdzie wykonywane sa różne opcje
 void mainMenu(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
-    std::cout << std::string(31, '=') << std::endl;
-    std::cout << std::string(10, '*') << " Cars Base " << std::string(10, '*') << std::endl;
-    std::cout << std::string(31, '=') << std::endl;
+    std::cout << std::string(48, '=') << std::endl;
+    std::cout << std::string(10, '*') << " Electric Vehicles Database " << std::string(10, '*') << std::endl;
+    std::cout << std::string(48, '=') << std::endl;
     std::cout << "1. Add new vehicle \n2. Show all vehicles \n3. Delete vehicle "
                  "\n4. Save to DataBase \n5. Load from DataBase \n6. Exit" << std::endl;
 
@@ -85,8 +89,14 @@ void mainMenu(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
             break;
         case 3:
             //usuwanie wybranego pojazdu z vectora vehicles
-            deleteV(vehicles);
-            break;
+            if(vehicles.empty()) {
+                std::cout << "There are no vehicles!\n";
+                break;
+            } else {
+                deleteV(vehicles);
+                break;
+            }
+
         case 4:
             //zapisywanie pojazdów z vectora vehicles do pliku bazy danych
             saveV(vehicles);
@@ -97,7 +107,8 @@ void mainMenu(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
             break;
         case 6:
             //wyłączenie programu
-            exit(0);
+            isWorking = false;
+            break;
         default:
             std::cout << "'" << choice << "'" << "It is not an option!\n";
     }
@@ -137,6 +148,11 @@ void deleteV(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
 
 //funkcja odpowiedzialna za wywałanie w każdym objekcie funkcji składowej save
 void saveV(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
+    //****
+    std::string filename = "database.bin";
+    std::ofstream file(filename,std::ios::out | std::ios::binary);
+    file.close();
+    //****
     for(auto const &v : vehicles) {
         v->save();
     }

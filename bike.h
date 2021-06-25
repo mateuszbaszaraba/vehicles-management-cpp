@@ -16,12 +16,23 @@ private:
     unsigned short int pushPower;
     int frameNumber;
 public:
-    void create();
-    void show();
-    void save();
-    Bike(std::string ty, std::string br, std::string mo, unsigned short int ra, unsigned short int po, std::string co,
-         unsigned short int nu, unsigned char ge, unsigned short int pu, int fr);
-    Bike();
+    void create() override;
+    void show() override;
+    void save() override;
+    Bike(std::string &ty, std::string &br, std::string &mo, unsigned short int &ra, unsigned short int &po, std::string &co,
+         unsigned short int &nu, unsigned char &ge, unsigned short int &pu, int &fr);
+    Bike() = default;
+    ~Bike() = default;
+
+    //getters
+    unsigned char getGears() const;
+    unsigned short int getPushPower() const;
+    int getFrameNumber() const;
+
+    //setters
+    void setGears();
+    void setPushPower();
+    void setFrameNumber();
 };
 
 

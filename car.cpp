@@ -6,24 +6,24 @@
 #include "car.h"
 
 void Car::create() {
-    std::cout << "Brand: "; std::cin >> brand;
-    std::cout << "Model: "; std::cin >> model;
-    std::cout << "Range: "; std::cin >> range;
-    std::cout << "Power: "; std::cin >> power;
-    std::cout << "Color: "; std::cin >> color;
-    std::cout << "Number of seats: "; std::cin >> numberOfSeats;
-    std::cout << "Vin: "; std::cin >> vin;
-    std::cout << "Damaged (1/0): "; std::cin >> damaged;
-    std::cout << "Was damaged before (1/0): "; std::cin >> damagedBefore;
-    std::cout << "Plates number: "; std::cin >> platesNumber;
+    setBrand();
+    setModel();
+    setRange();
+    setPower();
+    setColor();
+    setNumberOfSeats();
+    setVin();
+    setDamaged();
+    setDamagedBefore();
+    setPlastesNumber();
 }
 
 void Car::show() {
     std::cout << std::string(19, '-') << std::endl;
-    std::cout << "Brand: " << brand << "\nModel: " << model << "\nRange: " << range
-              << "\nPower: " << power << "\nColor: " << color << "\nNumber of seats: " << numberOfSeats
-              << "\nVin: " << vin << "\nDamaged: " << damaged << "\nDamaged before: " << damagedBefore
-              << "\nPlates number: " << platesNumber << std::endl;
+    std::cout << "Brand: " << getBrand() << "\nModel: " << getModel() << "\nRange: " << getRange()
+              << "\nPower: " << getPower() << "\nColor: " << getColor() << "\nNumber of seats: " << getNumberOfSeats()
+              << "\nVin: " << getVin() << "\nDamaged: " << getDamaged() << "\nDamaged before: " << getDamagedBefore()
+              << "\nPlates number: " << getPlatesNumber() << std::endl;
     std::cout << std::string(19, '-') << std::endl;
 }
 
@@ -58,8 +58,8 @@ void Car::save() {
     file.write("\0", sizeof(char));
 }
 
-Car::Car(std::string ty, std::string br, std::string mo, unsigned short int ra, unsigned short int po, std::string co,
-         unsigned short int nu, long vi, bool da, bool db, std::string pl) {
+Car::Car(std::string &ty, std::string &br, std::string &mo, unsigned short int &ra, unsigned short int &po, std::string &co,
+         unsigned short int &nu, long &vi, bool &da, bool &db, std::string &pl) {
     type=ty;
     brand=br;
     model=mo;
@@ -73,4 +73,62 @@ Car::Car(std::string ty, std::string br, std::string mo, unsigned short int ra, 
     platesNumber=pl;
 }
 
-Car::Car() {};
+
+//getters
+long Car::getVin() const {
+    return this->vin;
+}
+
+bool Car::getDamaged() const {
+    return this->damaged;
+}
+
+bool Car::getDamagedBefore() const {
+    return this->damagedBefore;
+}
+
+const std::string &Car::getPlatesNumber() const {
+    return this->platesNumber;
+}
+
+
+//setters
+
+void Car::setVin() {
+    std::cout << "Vin: ";
+    std::string vi;
+    std::cin >> vi;
+    if(!ifNumeric(vi) || std::stoi(vi) < 0) {
+        throw std::runtime_error("Incorrect vin!");
+    }
+    this->vin = std::stol(vi);
+
+}
+void Car::setDamaged() {
+    std::cout << "Damaged (1/0): ";
+    short int da {};
+    std::cin >> da;
+    if(da!=0 && da!=1) {
+        throw std::runtime_error("Incorrect damage!");
+    }
+    this->damaged = da;
+}
+
+void Car::setDamagedBefore() {
+    std::cout << "Was damaged before (1/0): ";
+    short int daB;
+    std::cin >> daB;
+    if(daB<0 || daB>1) {
+        throw std::runtime_error("Incorrect damagedBefore!");
+    }
+    this->damagedBefore = daB;
+}
+void Car::setPlastesNumber() {
+    std::cout << "Plates number: ";
+    std::string pl;
+    std::cin >> pl;
+    if(pl.empty()) {
+        throw std::runtime_error("Incorrect plates number!");
+    }
+    this->platesNumber = pl;
+}
