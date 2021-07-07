@@ -38,13 +38,12 @@ public:
     unsigned short getNumberOfSeats() const;
 
     //setters
-    void setBrand();
-    void setModel();
-    void setRange();
-    void setPower();
-    void setColor();
-    void setNumberOfSeats();
-
+    void setBrand(std::string &tmp);
+    void setModel(std::string &tmp);
+    void setRange(std::string &tmp);
+    void setPower(std::string &tmp);
+    void setColor(std::string &tmp);
+    void setNumberOfSeats(std::string &tmp);
 };
 
 

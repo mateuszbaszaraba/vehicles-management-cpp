@@ -7,15 +7,43 @@
 
 
 void Bike::create() {
-    setBrand();
-    setModel();
-    setRange();
-    setPower();
-    setColor();
-    setNumberOfSeats();
-    setGears();
-    setPushPower();
-    setFrameNumber();
+    std::cout << "Brand: ";
+    std::string temp;
+    std::cin >> temp;
+    setBrand(temp);
+
+    std::cout << "Model: ";
+    std::cin >> temp;
+    setModel(temp);
+
+    std::cout << "Range: ";
+    std::cin >> temp;
+    setRange(temp);
+
+    std::cout << "Power: ";
+    std::cin >> temp;
+    setPower(temp);
+
+    std::cout << "color: ";
+    std::cin >> temp;
+    setColor(temp);
+
+    std::cout << "Number of seats: ";
+    std::cin >> temp;
+    setNumberOfSeats(temp);
+
+    std::cout << "Gears: ";
+    char temp3;
+    std::cin >> temp3;
+    setGears(temp3);
+
+    std::cout << "Push Power: ";
+    std::cin >> temp;
+    setPushPower(temp);
+
+    std::cout << "Frame Number: ";
+    std::cin >> temp;
+    setFrameNumber(temp);
 }
 
 void Bike::show() {
@@ -87,38 +115,27 @@ int Bike::getFrameNumber() const {
 
 //setters
 
-void Bike::setGears() {
-    std::cout << "Gears: ";
-    char ge;
-    std::cin >> ge;
-    if(ge<0 || !isdigit(ge)) {
+void Bike::setGears(char &temp3) {
+    if(temp3<0 || !isdigit(temp3)) {
         throw std::runtime_error("Incorrect number of gears!");
     }
-    this->gears = ge;
+    this->gears = temp3;
 }
 
-void Bike::setPushPower() {
-    std::cout << "Push Power: ";
-    std::string pu;
-    std::cin >> pu;
-
-    if(!ifNumeric(pu) || std::stoi(pu) < 0) {
+void Bike::setPushPower(std::string &temp) {
+    if(!ifNumeric(temp) || std::stoi(temp) < 0) {
         throw std::runtime_error("Incorrect push power!");
     }
 
-    int result = std::stoi(pu);
+    int result = std::stoi(temp);
     this->pushPower = static_cast<unsigned short int>(result);
 }
 
-void Bike::setFrameNumber() {
-    std::cout << "Frame Number: ";
-    std::string fr;
-    std::cin >> fr;
-
-    if(!ifNumeric(fr) || std::stoi(fr) < 0) {
+void Bike::setFrameNumber(std::string &temp) {
+    if(!ifNumeric(temp) || std::stoi(temp) < 0) {
         throw std::runtime_error("Incorrect frame number!");
     }
 
-    int result = std::stoi(fr);
+    int result = std::stoi(temp);
     this->frameNumber = static_cast<unsigned short int>(result);
 }

@@ -13,7 +13,7 @@ class Car : public Vehicle {
 private:
     std::string type = "car";
     long vin;
-    bool damaged;  //boolAlpha()
+    bool damaged;
     bool damagedBefore;
     std::string platesNumber;
 public:
@@ -32,10 +32,10 @@ public:
     const std::string &getPlatesNumber() const;
 
     //setters
-    void setVin();
-    void setDamaged();
-    void setDamagedBefore();
-    void setPlastesNumber();
+    void setVin(std::string &tmp);
+    void setDamaged(short int &tmp2);
+    void setDamagedBefore(short int &tmp2);
+    void setPlastesNumber(std::string &tmp);
 };
 
 

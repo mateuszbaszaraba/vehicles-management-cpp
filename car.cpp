@@ -6,16 +6,47 @@
 #include "car.h"
 
 void Car::create() {
-    setBrand();
-    setModel();
-    setRange();
-    setPower();
-    setColor();
-    setNumberOfSeats();
-    setVin();
-    setDamaged();
-    setDamagedBefore();
-    setPlastesNumber();
+    std::cout << "Brand: ";
+    std::string temp;
+    std::cin >> temp;
+    setBrand(temp);
+
+    std::cout << "Model: ";
+    std::cin >> temp;
+    setModel(temp);
+
+    std::cout << "Range: ";
+    std::cin >> temp;
+    setRange(temp);
+
+    std::cout << "Power: ";
+    std::cin >> temp;
+    setPower(temp);
+
+    std::cout << "color: ";
+    std::cin >> temp;
+    setColor(temp);
+
+    std::cout << "Number of seats: ";
+    std::cin >> temp;
+    setNumberOfSeats(temp);
+
+    std::cout << "Vin: ";
+    std::cin >> temp;
+    setVin(temp);
+
+    std::cout << "Damaged (1/0): ";
+    short int temp2 {};
+    std::cin >> temp2;
+    setDamaged(temp2);
+
+    std::cout << "Was damaged before (1/0): ";
+    std::cin >> temp2;
+    setDamagedBefore(temp2);
+
+    std::cout << "Plates number: ";
+    std::cin >> temp;
+    setPlastesNumber(temp);
 }
 
 void Car::show() {
@@ -94,41 +125,29 @@ const std::string &Car::getPlatesNumber() const {
 
 //setters
 
-void Car::setVin() {
-    std::cout << "Vin: ";
-    std::string vi;
-    std::cin >> vi;
-    if(!ifNumeric(vi) || std::stoi(vi) < 0) {
+void Car::setVin(std::string &tmp) {
+    if(!ifNumeric(tmp) || std::stoi(tmp) < 0) {
         throw std::runtime_error("Incorrect vin!");
     }
-    this->vin = std::stol(vi);
+    this->vin = std::stol(tmp);
 
 }
-void Car::setDamaged() {
-    std::cout << "Damaged (1/0): ";
-    short int da {};
-    std::cin >> da;
-    if(da!=0 && da!=1) {
+void Car::setDamaged(short int &tmp2) {
+    if(tmp2!=0 && tmp2!=1) {
         throw std::runtime_error("Incorrect damage!");
     }
-    this->damaged = da;
+    this->damaged = tmp2;
 }
 
-void Car::setDamagedBefore() {
-    std::cout << "Was damaged before (1/0): ";
-    short int daB;
-    std::cin >> daB;
-    if(daB<0 || daB>1) {
+void Car::setDamagedBefore(short int &tmp2) {
+    if(tmp2<0 || tmp2>1) {
         throw std::runtime_error("Incorrect damagedBefore!");
     }
-    this->damagedBefore = daB;
+    this->damagedBefore = tmp2;
 }
-void Car::setPlastesNumber() {
-    std::cout << "Plates number: ";
-    std::string pl;
-    std::cin >> pl;
-    if(pl.empty()) {
+void Car::setPlastesNumber(std::string &tmp) {
+    if(tmp.empty()) {
         throw std::runtime_error("Incorrect plates number!");
     }
-    this->platesNumber = pl;
+    this->platesNumber = tmp;
 }

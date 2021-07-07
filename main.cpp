@@ -47,8 +47,7 @@ void mainMenu(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
     std::cin >> choice;
 
     //sprawdzenie którą opcję wybrał użytkownik
-    switch(choice)
-    {
+    switch(choice) {
         case 1: {
             //w przypadku wybrania 1. opcji zostaje stworzony wybrany obiekt wybranej klasy
             std::cout << "*Choose one option*\n1.Car\t2.Bike\t3.Other";
@@ -134,7 +133,7 @@ void showV(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
 
 //funkcja odpowiedzialna za usuwanie danego pojazdu z vectora vehicles
 void deleteV(std::vector<std::shared_ptr<Vehicle>> &vehicles) {
-    for (size_t i = 0; i < vehicles.size(); ++i) {
+    for (int i = 0; i < vehicles.size(); ++i) {
         std::cout << "id: [" << i << "]" << std::endl;
         vehicles[i]->show();
     }

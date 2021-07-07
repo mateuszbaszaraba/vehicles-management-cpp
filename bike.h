@@ -30,9 +30,9 @@ public:
     int getFrameNumber() const;
 
     //setters
-    void setGears();
-    void setPushPower();
-    void setFrameNumber();
+    void setGears(char &temp3);
+    void setPushPower(std::string &temp);
+    void setFrameNumber(std::string &temp);
 };
 
 

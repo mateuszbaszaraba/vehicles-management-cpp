@@ -23,12 +23,30 @@ void Vehicle::show() {
 }
 
 void Vehicle::create() {
-        setBrand();
-        setModel();
-        setRange();
-        setPower();
-        setColor();
-        setNumberOfSeats();
+    std::cout << "Brand: ";
+    std::string temp;
+    std::cin >> temp;
+    setBrand(temp);
+
+    std::cout << "Model: ";
+    std::cin >> temp;
+    setModel(temp);
+
+    std::cout << "Range: ";
+    std::cin >> temp;
+    setRange(temp);
+
+    std::cout << "Power: ";
+    std::cin >> temp;
+    setPower(temp);
+
+    std::cout << "color: ";
+    std::cin >> temp;
+    setColor(temp);
+
+    std::cout << "Number of seats: ";
+    std::cin >> temp;
+    setNumberOfSeats(temp);
 }
 
 void Vehicle::save() {
@@ -66,72 +84,51 @@ Vehicle::Vehicle(std::string &ty, std::string &br, std::string &mo, unsigned sho
 
 //setters
 
-void Vehicle::setBrand() {
-    std::cout << "Brand: ";
-    std::string br;
-    std::cin >> br;
-    if(br.empty()) {
+void Vehicle::setBrand(std::string &tmp) {
+    if(tmp.empty()) {
         throw std::runtime_error("Incorrect brand!");
     }
-    this->brand = br;
+    this->brand = tmp;
 }
 
-void Vehicle::setModel() {
-    std::cout << "Model: ";
-    std::string mo;
-    std::cin >> mo;
-    if(mo.empty()) {
+void Vehicle::setModel(std::string &tmp) {
+    if(tmp.empty()) {
         throw std::runtime_error("Incorrect model!");
     }
-    this->model = mo;
+    this->model = tmp;
 }
 
-void Vehicle::setRange() {
-    std::cout << "Range: ";
-    std::string ra;
-    std::cin >> ra;
-
-    if(!ifNumeric(ra) || std::stoi(ra) < 0) {
+void Vehicle::setRange(std::string &tmp) {
+    if(!ifNumeric(tmp) || std::stoi(tmp) < 0) {
         throw std::runtime_error("Incorrect range!");
     }
 
-    int result = std::stoi(ra);
+    int result = std::stoi(tmp);
     this->range = static_cast<unsigned short int>(result);
 }
 
-void Vehicle::setPower() {
-    std::cout << "Power: ";
-    std::string po;
-    std::cin >> po;
-
-    if(!ifNumeric(po) || std::stoi(po) < 0) {
+void Vehicle::setPower(std::string &tmp) {
+    if(!ifNumeric(tmp) || std::stoi(tmp) < 0) {
         throw std::runtime_error("Incorrect power!");
     }
 
-    int result = std::stoi(po);
+    int result = std::stoi(tmp);
     this->power = static_cast<unsigned short int>(result);
 }
 
-void Vehicle::setColor() {
-    std::cout << "Color: ";
-    std::string co;
-    std::cin >> co;
-    if(co.empty()) {
+void Vehicle::setColor(std::string &tmp) {
+    if(tmp.empty()) {
         throw std::runtime_error("Incorrect color!");
     }
-    this->color = co;
+    this->color = tmp;
 }
 
-void Vehicle::setNumberOfSeats() {
-    std::cout << "Number of seats: ";
-    std::string nu;
-    std::cin >> nu;
-
-    if(!ifNumeric(nu) || std::stoi(nu) < 0) {
+void Vehicle::setNumberOfSeats(std::string &tmp) {
+    if(!ifNumeric(tmp) || std::stoi(tmp) < 0) {
         throw std::runtime_error("Incorrect number of seats!");
     }
 
-    int result = std::stoi(nu);
+    int result = std::stoi(tmp);
     this->numberOfSeats = static_cast<unsigned short int>(result);
 }
 
